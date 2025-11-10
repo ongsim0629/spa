@@ -1,11 +1,12 @@
-const enableMocking = async () => {
-  if (import.meta.env.DEV) {
-    const { worker } = await import("./mocks/browser.js");
-    return worker.start({
+export const enableMocking = () =>
+  import("./mocks/browser.js").then(({ worker }) =>
+    worker.start({
+      serviceWorker: {
+        url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+      },
       onUnhandledRequest: "bypass",
-    });
-  }
-};
+    }),
+  );
 
 function main() {
   const 상품목록_레이아웃_로딩 = `
@@ -1148,11 +1149,7 @@ function main() {
 
 // 애플리케이션 시작
 if (import.meta.env.MODE !== "test") {
-  if (import.meta.env.DEV) {
-    enableMocking().then(main);
-  } else {
-    main();
-  }
+  enableMocking().then(main);
 } else {
   main();
 }
