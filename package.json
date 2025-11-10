@@ -1,4 +1,5 @@
 {
+  "homepage": "https://s1_1v.github.io/spa",
   "name": "front-chapter1-1",
   "private": true,
   "version": "0.0.0",
@@ -16,7 +17,8 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "npx playwright show-report",
     "test:generate": "playwright codegen localhost:5173",
-    "prepare": "husky"
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -35,6 +37,7 @@
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "gh-pages": "^6.3.0",
     "globals": "^15.13.0",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
