@@ -16,7 +16,7 @@ export const HomePage = ({
   if (error) {
     return /*HTML*/ `
       <div class="min-h-screen bg-gray-50">
-        ${Header(cartCount)}
+        ${Header({ cartCount })}
         <main class="max-w-md mx-auto px-4 py-4">
           <div class="text-center py-20">
             <p class="text-gray-600 mb-4">상품을 불러오는데 실패했습니다.</p>
@@ -32,7 +32,7 @@ export const HomePage = ({
 
   return /*HTML*/ `
     <div class="min-h-screen bg-gray-50">
-      ${Header(cartCount)}
+      ${Header({ cartCount })}
       <main class="max-w-md mx-auto px-4 py-4">
         ${SearchForm({ filters, categories })}
         ${ProductList({ products, totalCount, loading, isLoadingMore })}

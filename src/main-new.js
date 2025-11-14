@@ -372,18 +372,12 @@ const render = async (isInfiniteScroll = false) => {
 
   if (location.pathname === "/") {
     if (!isInfiniteScroll) {
-      // 초기 로딩 상태 표시 - 카테고리 로딩 중 표시를 위해 빈 객체 전달
-      $root.innerHTML = HomePage({
-        loading: true,
-        categories: {}, // 빈 객체면 SearchForm에서 "카테고리 로딩 중..." 표시
-        cartCount: getCartCount(),
-      });
+      $root.innerHTML = HomePage({ loading: true, categories: {} });
       allProducts = [];
       currentFilters.page = 1;
       hasMore = true;
     }
 
-    // 카테고리 데이터 로드
     if (Object.keys(categoriesData).length === 0) {
       try {
         categoriesData = await getCategories();
